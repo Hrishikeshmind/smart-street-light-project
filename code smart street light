@@ -1,0 +1,47 @@
+// Pin definitions
+const int sensorPin1 = 2;  // Sensor 1 input
+const int sensorPin2 = 3;  // Sensor 2 input
+const int sensorPin3 = 4;  // Sensor 3 input
+const int lightPin1 = 5;   // Light 1 output
+const int lightPin2 = 6;   // Light 2 output
+const int lightPin3 = 7;   // Light 3 output
+
+void setup() {
+  // Set sensor pins as inputs
+  pinMode(sensorPin1, INPUT);
+  pinMode(sensorPin2, INPUT);
+  pinMode(sensorPin3, INPUT);
+
+  // Set light pins as outputs
+  pinMode(lightPin1, OUTPUT);
+  pinMode(lightPin2, OUTPUT);
+  pinMode(lightPin3, OUTPUT);
+
+  // Initialize lights to be OFF
+  digitalWrite(lightPin1, LOW);
+  digitalWrite(lightPin2, LOW);
+  digitalWrite(lightPin3, LOW);
+}
+
+void loop() {
+  // Read sensor inputs
+  int sensorValue1 = digitalRead(sensorPin1);
+  int sensorValue2 = digitalRead(sensorPin2);
+  int sensorValue3 = digitalRead(sensorPin3);
+
+  // Check if any sensor detects darkness (LOW)
+  if (sensorValue1 == LOW || sensorValue2 == LOW || sensorValue3 == LOW) {
+    // Turn on all lights
+    digitalWrite(lightPin1, HIGH);
+    digitalWrite(lightPin2, HIGH);
+    digitalWrite(lightPin3, HIGH);
+  } else {
+    // Turn off all lights
+    digitalWrite(lightPin1, LOW);
+    digitalWrite(lightPin2, LOW);
+    digitalWrite(lightPin3, LOW);
+  }
+
+  // Add a delay to avoid rapid changes
+  delay(1000);  // Adjust the delay as needed
+}
